@@ -1,10 +1,14 @@
+```
 server : http:localhost:3000
 
 ### register user
 ### POST /users/register
 body        : email, password
+
 code        : 201
+
 response    :
+
 {
     "user": {
         "favorites": [],
@@ -18,16 +22,22 @@ response    :
 ### login user
 ### POST /users/login
 body        : email, password
+
 code        : 200
+
 response    :
+
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZDdhMWJhMGY5OTIwNjIwMTQwZjRjNjIiLCJlbWFpbCI6Inpha2lAbWFpbC5jb20iLCJpYXQiOjE1NjgyODM1NTV9.gKwaGf2E4zWCIgnqZTveGIpTZMFCOsP2bDlM_jBsKa0"
 }
 
 ### login oauth
 body        : 
+
 code        : 200
+
 response    :
+
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZDdhMWJhMGY5OTIwNjIwMTQwZjRjNjIiLCJlbWFpbCI6Inpha2lAbWFpbC5jb20iLCJpYXQiOjE1NjgyODM1NTV9.gKwaGf2E4zWCIgnqZTveGIpTZMFCOsP2bDlM_jBsKa0"
 }
@@ -35,8 +45,13 @@ response    :
 ### get all images from db
 ### GET /images
 body        : 
+
 headers     : token
+
 code        : 200
+
+response:
+
 [
     {
         "_id": "5d7a1c8c34d2722084d4a54b",
@@ -57,9 +72,13 @@ code        : 200
 ### upload an images to db
 ### POST /images
 body        : title, url
+
 headers     : token
+
 code        : 201
+
 response    : 
+
 {
     "_id": "5d7a1d41eec1ee20a2560379",
     "title": "first upload",
@@ -71,9 +90,13 @@ response    :
 ### get single image from db
 ### GET /images/:id
 body        : 
+
 headers     : token
+
 code        : 200
+
 response    : 
+
 {
     "_id": "5d7a1c8c34d2722084d4a54b",
     "title": "first upload",
@@ -85,9 +108,13 @@ response    :
 ### delete single image from db
 ### DELETE /images/:id
 body        : 
+
 headers     : token
+
 code        : 200
+
 response    : 
+
 {
     "n": 1,
     "ok": 1,
@@ -97,9 +124,13 @@ response    :
 ### favorite an image
 ### POST /favorites/:id
 body        : 
+
 headers     : token
+
 code        : 201
+
 response    : 
+
 {
     "n": 1,
     "nModified": 1,
@@ -109,11 +140,16 @@ response    :
 ### unfav an images
 ### DELETE /favorites/:id
 body        : 
+
 headers     : token
+
 code        : 200
+
 response    : 
+
 {
     "n": 1,
     "nModified": 1,
     "ok": 1
 }
+```
