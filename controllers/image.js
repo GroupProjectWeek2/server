@@ -5,7 +5,7 @@ const User = require('../models/user')
 class ImageController {
     // get all image
     static getAllImages(req, res, next) {
-        Image.find()
+        Image.find().populate('tag')
             .then(images => {
                 res.status(200).json(images)
             })
@@ -14,8 +14,12 @@ class ImageController {
 
     // upload an image
     static uploadImage(req, res, next) {
-        const { title, url } = req.body
+        const { title, url, tag} = req.body
         const { userId } = req.decode
+
+        // console.log(req.body.title);
+        // console.log(req.body.url);
+        // console.log(req.body.tag);
             
         Image.create({ title, url, userId })
             .then(image => {
@@ -28,7 +32,7 @@ class ImageController {
     static getImage(req, res, next) {
         const { id } = req.params
 
-        Image.findById(id)
+        Image.findById(id).populate('tag')
             .then(image => {
                 res.status(200).json(image)
             })

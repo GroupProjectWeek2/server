@@ -2,6 +2,11 @@
 const User = require('../models/user')
 const { generateToken } = require('../helpers/jwt')
 const { compareHash } = require('../helpers/bcryptjs')
+const { OAuth2Client } = require('google-auth-library')
+
+const clientId = process.env.GOOGLE_CLIENT_ID
+const defaultPassword = process.env.DEFAULT_PASSWORD
+const client = new OAuth2Client(clientId)
 
 class UserController {
     static register(req, res, next) {
@@ -34,6 +39,43 @@ class UserController {
                 })
             })
               .catch(next)
+    }
+
+    static googleLogin(req, res, next) {
+        const { token } = req.body
+        let payload
+
+        client.verifyIdToken({
+            idToken: token,
+            audience: clientId
+        })
+            .then(ticket => {
+                payload = ticket.getPayload()
+
+                return User.findOne({ email: payload.email })
+            })
+            .then(user => {
+                if (user) {
+                    console.log(`user already registered`)
+                    return user
+                } else {
+                    console.log(`user not registered yet`)
+
+                    return User.create({
+                        email: payload.email,
+                        password: defaultPassword
+                    })
+                }
+            })
+            .then(user => {
+                const token = generateToken({
+                    id: user._id,
+                    email: payload.email
+                })
+
+                res.status(200).json({ token })
+            })
+            .catch(next)
     }
 }
 

@@ -24,6 +24,14 @@ response    :
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZDdhMWJhMGY5OTIwNjIwMTQwZjRjNjIiLCJlbWFpbCI6Inpha2lAbWFpbC5jb20iLCJpYXQiOjE1NjgyODM1NTV9.gKwaGf2E4zWCIgnqZTveGIpTZMFCOsP2bDlM_jBsKa0"
 }
 
+### login oauth
+body        : 
+code        : 200
+response    :
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZDdhMWJhMGY5OTIwNjIwMTQwZjRjNjIiLCJlbWFpbCI6Inpha2lAbWFpbC5jb20iLCJpYXQiOjE1NjgyODM1NTV9.gKwaGf2E4zWCIgnqZTveGIpTZMFCOsP2bDlM_jBsKa0"
+}
+
 ### get all images from db
 ### GET /images
 body        : 

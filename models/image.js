@@ -14,7 +14,11 @@ const imageSchema = new Schema({
     userId: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    tagId: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Tag'
+    }]
 })
 
 module.exports = mongoose.model('Image', imageSchema)
