@@ -14,12 +14,9 @@ class ImageController {
 
     // upload an image
     static uploadImage(req, res, next) {
-        const { title, url, tag} = req.body
+        const { title } = req.body
         const { userId } = req.decode
-
-        // console.log(req.body.title);
-        // console.log(req.body.url);
-        // console.log(req.body.tag);
+        const url = req.file.cloudStoragePublicUrl
             
         Image.create({ title, url, userId })
             .then(image => {
