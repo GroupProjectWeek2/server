@@ -18,6 +18,6 @@ const imageSchema = new Schema({
     tag: [{
         type: String
     }]
-},{ timestamps: true })
+}, { timestamps: true })
 
 module.exports = mongoose.model('Image', imageSchema)

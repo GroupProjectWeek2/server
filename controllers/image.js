@@ -8,7 +8,7 @@ const client = new vision.ImageAnnotatorClient()
 class ImageController {
     // get all image
     static getAllImages(req, res, next) {
-        Image.find()
+        Image.find().sort({ createdAt: -1 })
             .then(images => {
                 res.status(200).json(images)
             })
