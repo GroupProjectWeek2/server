@@ -15,7 +15,7 @@ const getPublicUrl = (filename) => {
 }
 
 const sendUploadToGCS = (req, res, next) => {
-  console.log(req.file)
+  // console.log(req.file)
   if (!req.file) {
     return next()
   }
@@ -69,9 +69,9 @@ const Multer = require('multer'),
         }
         ,
         fileFilter: function (req, file, next) {
-            console.log("masuk")
-            console.log(file.mimetype)
-            console.log(file.mimetype.includes("image"))
+            // console.log("masuk")
+            // console.log(file.mimetype)
+            // console.log(file.mimetype.includes("image"))
           if (!file.mimetype.includes("image")) {
            next({
             status:400,

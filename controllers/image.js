@@ -8,7 +8,7 @@ const client = new vision.ImageAnnotatorClient()
 class ImageController {
     // get all image
     static getAllImages(req, res, next) {
-        Image.find().populate('tag')
+        Image.find()
             .then(images => {
                 res.status(200).json(images)
             })
@@ -17,11 +17,16 @@ class ImageController {
 
     // upload an image
     static uploadImage(req, res, next) {
-        const { title} = req.body
+        const { title } = req.body
         const { userId } = req.decode
         const url = req.file.cloudStoragePublicUrl
-        const tag = req.labels
-            
+        const labels = req.labels
+        const tag = []
+
+        labels.forEach(label => {
+            tag.push(label.description.toLowerCase())
+        })
+   
         Image.create({ title, url, userId, tag })
             .then(image => {
                 res.status(201).json(image)
@@ -33,7 +38,7 @@ class ImageController {
     static getImage(req, res, next) {
         const { id } = req.params
 
-        Image.findById(id).populate('tag')
+        Image.findById(id)
             .then(image => {
                 res.status(200).json(image)
             })
@@ -91,7 +96,7 @@ class ImageController {
 
     // search by tag
     static searchByTag(req, res, next) {
-        const { tag } = req.params
+        const tag = (req.params.tag).toLowerCase()
 
         Image.find({ tag: { $regex: tag } })
             .then(images => {

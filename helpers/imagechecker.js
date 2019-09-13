@@ -9,7 +9,7 @@ function imagechecker(req,res,next) {
     });
     
     const file = req.file.buffer
-    console.log(file)
+    // console.log(file)
   
     // Performs label detection on the image file
     // const [result] = await client.labelDetection('./try2.png');

@@ -6,8 +6,8 @@ const routes = require('./routes/index')
 const mongoose = require('mongoose')
 const errorHandler = require('./middlewares/errorHandler')
 const cors = require('cors')
-// const ATLAS_CONNECT = process.env.ATLAS_CONNECT
-const ATLAS_CONNECT = `mongodb://localhost:27017/unflush-tag`
+const ATLAS_CONNECT = process.env.ATLAS_CONNECT
+// const ATLAS_CONNECT = `mongodb://localhost:27017/unflush-tag`
 
 const app = express()
 const PORT = process.env.PORT
