@@ -1,5 +1,6 @@
 
 const User = require('../models/user')
+const Image = require('../models/image')
 const { generateToken } = require('../helpers/jwt')
 const { compareHash } = require('../helpers/bcryptjs')
 const { OAuth2Client } = require('google-auth-library')
@@ -74,6 +75,32 @@ class UserController {
                 })
 
                 res.status(200).json({ token })
+            })
+            .catch(next)
+    }
+
+    static myFav(req, res, next) {
+        const { userId } = req.decode
+
+        User.findById({ _id: userId })
+            .then(user => {
+                // res.send(user)
+                let getAllUrl = []
+
+                user.favorites.forEach(fav => {
+                    getAllUrl.push(Image.findById({ _id: fav}))
+                })
+
+                return Promise.all(getAllUrl)
+            })
+            .then(images => {
+                let urls = []
+
+                images.forEach(image => {
+                    urls.push(image.url)
+                })
+
+                res.status(200).json(urls)
             })
             .catch(next)
     }

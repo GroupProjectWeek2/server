@@ -20,7 +20,9 @@ const userSchema = new Schema({
         required: [ true, `password is required` ]
     },
     favorites: [{
-        type: String
+        // type: String
+        type: Schema.Types.ObjectId,
+        ref: 'Image'
     }]
 })
 
