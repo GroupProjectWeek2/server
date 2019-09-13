@@ -22,4 +22,7 @@ router.post('/favorites/:id', ImageController.favImage)
 // unfav an image
 router.delete('/favorites/:id', ImageController.unFavImage)
 
+// search image
+router.get('/search/:tag', ImageController.searchByTag)
+
 module.exports = router

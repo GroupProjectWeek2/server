@@ -7,10 +7,10 @@ const mongoose = require('mongoose')
 const errorHandler = require('./middlewares/errorHandler')
 const cors = require('cors')
 // const ATLAS_CONNECT = process.env.ATLAS_CONNECT
-const ATLAS_CONNECT = `mongodb://localhost:27017/unflush`
+const ATLAS_CONNECT = `mongodb://localhost:27017/unflush-tag`
 
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT
 
 mongoose.connect(ATLAS_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {

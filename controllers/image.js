@@ -1,6 +1,9 @@
 
 const Image = require('../models/image')
 const User = require('../models/user')
+const vision = require('@google-cloud/vision')
+
+const client = new vision.ImageAnnotatorClient()
 
 class ImageController {
     // get all image
@@ -14,16 +17,12 @@ class ImageController {
 
     // upload an image
     static uploadImage(req, res, next) {
-        const { title } = req.body
-        //const { userId } = req.decode
-        console.log(req.file)
-        let image = req.file.cloudStoragePublicUrl
-
-        // console.log(req.body.title);
-        // console.log(req.body.url);
-        // console.log(req.body.tag);
+        const { title} = req.body
+        const { userId } = req.decode
+        const url = req.file.cloudStoragePublicUrl
+        const tag = req.labels
             
-        Image.create({ title, url:image})
+        Image.create({ title, url, userId, tag })
             .then(image => {
                 res.status(201).json(image)
             })
@@ -86,6 +85,17 @@ class ImageController {
         )
             .then(user => {
                 res.status(200).json(user)
+            })
+            .catch(next)
+    }
+
+    // search by tag
+    static searchByTag(req, res, next) {
+        const { tag } = req.params
+
+        Image.find({ tag: { $regex: tag } })
+            .then(images => {
+                res.status(200).json(images)
             })
             .catch(next)
     }
