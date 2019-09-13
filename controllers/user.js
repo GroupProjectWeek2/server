@@ -94,13 +94,13 @@ class UserController {
                 return Promise.all(getAllUrl)
             })
             .then(images => {
-                let urls = []
+                // let urls = []
 
-                images.forEach(image => {
-                    urls.push(image.url)
-                })
+                // images.forEach(image => {
+                //     urls.push(image.url)
+                // })
 
-                res.status(200).json(urls)
+                res.status(200).json(images)
             })
             .catch(next)
     }
