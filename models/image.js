@@ -15,9 +15,8 @@ const imageSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    tagId: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Tag'
+    tag: [{
+        type: String
     }]
 })
 
