@@ -1,12 +1,14 @@
 
 const router = require('express').Router()
 const ImageController = require('../controllers/image')
-
+const images = require('../helpers/image')
+const getLabel = require('../helpers/getLabel')
+const checker = require('../helpers/imagechecker')
 // get all image
 router.get('/', ImageController.getAllImages)
 
 // upload an image
-router.post('/', ImageController.uploadImage)
+router.post('/', images.multer.single('image'), checker, getLabel, images.sendUploadToGCS, ImageController.uploadImage)
 
 // get single image
 router.get('/:id', ImageController.getImage)

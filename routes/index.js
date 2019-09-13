@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 
 router.use('/users', userRouter)
 
-router.use(authentication)
+//router.use(authentication)
 router.use('/images', imageRouter)
 
 module.exports = router

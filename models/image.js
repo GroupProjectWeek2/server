@@ -10,15 +10,15 @@ const imageSchema = new Schema({
     url: {
         type: String,
         required: [true, `there's no image url`]
-    },
-    userId: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    tagId: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Tag'
-    }]
+    }
+    // userId: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User'
+    // },
+    // tagId: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Tag'
+    // }]
 })
 
 module.exports = mongoose.model('Image', imageSchema)
